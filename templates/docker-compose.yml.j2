@@ -1,0 +1,29 @@
+version: "3"
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD: p@ssword
+      - MYSQL_DATABASE: jiradb
+      - MYSQL_USER: jiradb
+      - MYSQL_PASSWORD: p@ssword
+    restart: always
+  jira:
+    image: ${DOCKER_IMAGE}
+    container_name: jira
+    environment:
+      - TZ: Asia/Seoul
+      - JIRA_DATABASE_URL: {{ jira_db_url }}
+      - JIRA_DB_PASSWORD={{ jira_passwd }}
+    ports:
+      - "{{ jira_port }}:8080"
+    restart: unless-stopped
+{% if use_dkr_net %}
+    networks:
+      - {{ dkr_network }}
+
+networks:
+  {{ dkr_network }}:
+    external: true
+{% endif %}
