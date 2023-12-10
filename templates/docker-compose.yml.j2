@@ -8,15 +8,17 @@ services:
       - TZ=Asia/Seoul
       - JVM_MINIMUM_MEMORY=2048m
       - JVM_MAXIMUM_MEMORY=2048m
+      - ATL_DB_TYPE=mysql8
+      - ATL_DB_DRIVER={{ mysql_driver }}
       - ATL_JDBC_URL={{ mysql_database }}
-      - ATL_DB_DRIVER=com.mysql.jdbc.Driver
       - ATL_JDBC_USER={{ mysql_user }}
-      - ATL_JDBC_PASSWORD
+      - ATL_JDBC_PASSWORD={{ mysql_password }}
       - ATL_TOMCAT_CONTEXTPATH=/jira
     ports:
       - "{{ jira_port }}:8080"
     volumes:
       - {{ jira_data }}:/var/atlassian/application-data/jira
+      - {{ jira_data }}/lib/mysql-connector-j-8.1.0.jar:/opt/atlassian/jira/lib/mysql-connector-j-8.1.0.jar
     restart: unless-stopped
 {% if use_dkr_net %}
     depends_on:
@@ -25,7 +27,7 @@ services:
       - {{ dkr_network }}
 {% endif %}
   mysql:
-    image: mysql
+    image: ${MYSQL_DOCKER_IMAGE}
     container_name: mysql
     environment:
       - MYSQL_DATABASE={{ mysql_database }}

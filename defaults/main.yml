@@ -4,8 +4,11 @@ jira_image: "atlassian/jira-software"
 jira_ver: "latest"
 jira_port: 8080
 jira_db_url: "jdbc:mysql://mysql:3306/jiradb?useSSL=false&characterEncoding=UTF-8&serverTimezone=KST"
+mysql_image: "mysql"
+mysql_ver: "8.0"
 mysql_port: 3306
 
+mysql_driver: "com.mysql.jdbc.Driver"
 mysql_database: "jiradb"
 mysql_user: "jira"
 mysql_password: "P@ssw0rd1"

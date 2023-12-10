@@ -18,8 +18,8 @@
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ adm_user }}"
-    group: "{{ adm_group }}"
+    # owner: "{{ adm_user }}"
+    # group: "{{ adm_group }}"
     mode: '0644'
   with_items:
     - { src: "mysql-connector-j-8.1.0.jar", dest: "{{ jira_data }}/lib" }
