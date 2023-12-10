@@ -10,8 +10,19 @@
   with_items:
     - "{{ app_home_dir }}"
     - "{{ jira_home }}"
-    - "{{ jira_home }}/drivers"
     - "{{ jira_data }}"
+    - "{{ jira_data }}/lib"
+    - "{{ jira_data_db }}"
+
+- name: Copy Drivers
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ adm_user }}"
+    group: "{{ adm_group }}"
+    mode: '0644'
+  with_items:
+    - { src: "mysql-connector-j-8.1.0.jar", dest: "{{ jira_data }}/lib" }
 
 - name: Copy file
   ansible.builtin.template:
