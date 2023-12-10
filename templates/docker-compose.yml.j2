@@ -10,7 +10,7 @@ services:
       - JVM_MAXIMUM_MEMORY=2048m
       - ATL_DB_TYPE=mysql8
       - ATL_DB_DRIVER={{ mysql_driver }}
-      - ATL_JDBC_URL={{ mysql_database }}
+      - ATL_JDBC_URL={{ jira_db_url }}
       - ATL_JDBC_USER={{ mysql_user }}
       - ATL_JDBC_PASSWORD={{ mysql_password }}
       - ATL_TOMCAT_CONTEXTPATH=/jira
