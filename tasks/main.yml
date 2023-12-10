@@ -15,8 +15,8 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    owner: "{{ jira_user }}"
-    group: "{{ jira_user }}"
+    owner: "{{ adm_user }}"
+    group: "{{ adm_group }}"
     mode: '0775'
   with_items:
     - "{{ jira_data }}"
