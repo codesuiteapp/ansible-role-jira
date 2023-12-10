@@ -9,17 +9,17 @@
     force: false
   with_items:
     - "{{ app_home_dir }}"
-    - "{{ nexus_home }}"
+    - "{{ jira_home }}"
 
 - name: Creates directory
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    owner: "{{ nexus_user }}"
-    group: "{{ nexus_user }}"
+    owner: "{{ jira_user }}"
+    group: "{{ jira_user }}"
     mode: '0775'
   with_items:
-    - "{{ nexus_data }}"
+    - "{{ jira_data }}"
 
 - name: Copy file
   ansible.builtin.template:
@@ -30,7 +30,10 @@
     mode: '0644'
     backup: true
   with_items:
-    - { src: '.env.j2', dest: '{{ nexus_home }}/.env' }
-    - { src: 'docker-compose.yml.j2', dest: '{{ nexus_home }}/docker-compose.yml' }
+    - { src: '.env.j2', dest: '{{ jira_home }}/.env' }
+    - { src: 'docker-compose.yml.j2', dest: '{{ jira_home }}/docker-compose.yml' }
+
+- name: Restart jira
+  shell: echo success
   notify:
-    Restart nexus
+    Restart jira
