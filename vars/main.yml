@@ -1,3 +1,4 @@
 ---
 jira_home: "{{ app_home_dir }}/jira-docker"
 jira_data: "{{ app_data_dir }}/jira"
+jira_data_db: "{{ app_data_dir }}/mysql"

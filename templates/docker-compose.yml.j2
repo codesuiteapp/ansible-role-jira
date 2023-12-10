@@ -35,7 +35,7 @@ services:
     ports:
       - "{{ mysql_port }}:3306"
     volumes:
-      - {{ jira_data }}:/var/lib/mysql
+      - {{ jira_data_db }}:/var/lib/mysql
     restart: always
 {% if use_dkr_net %}
     networks:
