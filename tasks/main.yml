@@ -10,6 +10,7 @@
   with_items:
     - "{{ app_home_dir }}"
     - "{{ jira_home }}"
+    - "{{ jira_home }}/drivers"
     - "{{ jira_data }}"
 
 - name: Copy file

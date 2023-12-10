@@ -3,14 +3,20 @@ services:
   jira:
     image: ${DOCKER_IMAGE}
     container_name: jira
+    privileged: true
     environment:
       - TZ=Asia/Seoul
-      - JIRA_DATABASE_URL={{ mysql_database }}
-      - JIRA_DB_DRIVER=com.mysql.jdbc.Driver
-      - JIRA_DB_PASSWORD={{ mysql_user }}
-      - JIRA_DB_PASSWORD={{ mysql_password }}
+      - JVM_MINIMUM_MEMORY=2048m
+      - JVM_MAXIMUM_MEMORY=2048m
+      - ATL_JDBC_URL={{ mysql_database }}
+      - ATL_DB_DRIVER=com.mysql.jdbc.Driver
+      - ATL_JDBC_USER={{ mysql_user }}
+      - ATL_JDBC_PASSWORD
+      - ATL_TOMCAT_CONTEXTPATH=/jira
     ports:
       - "{{ jira_port }}:8080"
+    volumes:
+      - {{ jira_data }}:/var/atlassian/application-data/jira
     restart: unless-stopped
 {% if use_dkr_net %}
     depends_on:
