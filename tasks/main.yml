@@ -10,15 +10,6 @@
   with_items:
     - "{{ app_home_dir }}"
     - "{{ jira_home }}"
-
-- name: Creates directory
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    owner: "{{ adm_user }}"
-    group: "{{ adm_group }}"
-    mode: '0775'
-  with_items:
     - "{{ jira_data }}"
 
 - name: Copy file
@@ -34,6 +25,6 @@
     - { src: 'docker-compose.yml.j2', dest: '{{ jira_home }}/docker-compose.yml' }
 
 - name: Restart jira
-  shell: echo success
+  ansible.builtin.shell: echo success
   notify:
     Restart jira

@@ -3,11 +3,15 @@ image_registry_server: "docker.io"
 jira_image: "atlassian/jira-software"
 jira_ver: "latest"
 jira_port: 8080
-jira_db_url: "mysql://jiradb@mysql/jiradb"
-jira_passwd: "asdfg1"
+jira_db_url: "jdbc:mysql://mysql:3306/jiradb?useSSL=false"
+mysql_port: 3306
+
+mysql_database: "jiradb"
+mysql_user: "jiradb"
+mysql_password: "P@ssw0rd1"
 
 docker_compose_bin: "docker-compose"
-use_dkr_net: false
+use_dkr_net: true
 dkr_network: devops_net
 use_extra_hosts: false
 add_etc_host: "10.11.22.10   devops.com"
