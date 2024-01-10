@@ -6,8 +6,8 @@ services:
     privileged: true
     environment:
       - TZ=Asia/Seoul
-      - JVM_MINIMUM_MEMORY=2048m
-      - JVM_MAXIMUM_MEMORY=2048m
+      - JVM_MINIMUM_MEMORY=4096m
+      - JVM_MAXIMUM_MEMORY=4096m
       - ATL_DB_TYPE=mysql8
       - ATL_DB_DRIVER={{ mysql_driver }}
       - ATL_JDBC_URL={{ jira_db_url }}
